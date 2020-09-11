@@ -3,15 +3,15 @@ package lambda;
 import java.util.function.Function;
 
 /**
- * ¼¶Áª±í´ïÊ½ºÍ¿ÂÀï»¯ 
- * ¿ÂÀï»¯:°Ñ¶à¸ö²ÎÊıµÄº¯Êı×ª»»ÎªÖ»ÓĞÒ»¸ö²ÎÊıµÄº¯Êı 
- * ¿ÂÀï»¯µÄÄ¿µÄ£ºº¯Êı±ê×¼»¯
- * ¸ß½×º¯Êı£º¾ÍÊÇ·µ»Øº¯ÊıµÄº¯Êı
+ * çº§è”è¡¨è¾¾å¼å’ŒæŸ¯é‡ŒåŒ–
+ * æŸ¯é‡ŒåŒ–:æŠŠå¤šä¸ªå‚æ•°çš„å‡½æ•°è½¬æ¢ä¸ºåªæœ‰ä¸€ä¸ªå‚æ•°çš„å‡½æ•°
+ * æŸ¯é‡ŒåŒ–çš„ç›®çš„ï¼šå‡½æ•°æ ‡å‡†åŒ–
+ * é«˜é˜¶å‡½æ•°ï¼šå°±æ˜¯è¿”å›å‡½æ•°çš„å‡½æ•°
  */
 public class CurryDemo {
 
 	public static void main(String[] args) {
-		// ÊµÏÖÁËx+yµÄ¼¶Áª±í´ïÊ½
+		// å®ç°äº†x+yçš„çº§è”è¡¨è¾¾å¼
 		Function<Integer, Function<Integer, Integer>> fun = x -> y -> x
 				+ y;
 		System.out.println(fun.apply(2).apply(3));
@@ -22,14 +22,14 @@ public class CurryDemo {
 
 		int[] nums = { 2, 3, 4 };
 		Function f = fun2;
-		
+
 		for (int i = 0; i < nums.length; i++) {
 			if (f instanceof Function) {
 				Object obj = f.apply(nums[i]);
 				if (obj instanceof Function) {
 					f = (Function) obj;
 				} else {
-					System.out.println("µ÷ÓÃ½áÊø£º½á¹ûÎª" + obj);
+					System.out.println("è°ƒç”¨ç»“æŸï¼šç»“æœä¸º" + obj);
 				}
 			}
 		}

@@ -6,25 +6,25 @@ public class StreamDemo1 {
 
 	public static void main(String[] args) {
 		int[] nums = { 1, 2, 3 };
-		// Íâ²¿µü´ú
+		// å¤–éƒ¨è¿­ä»£
 		int sum = 0;
 		for (int i : nums) {
 			sum += i;
 		}
-		System.out.println("½á¹ûÎª£º" + sum);
+		System.out.println("ç»“æœä¸ºï¼š" + sum);
 
-		// Ê¹ÓÃstreamµÄÄÚ²¿µü´ú
-		// map¾ÍÊÇÖĞ¼ä²Ù×÷£¨·µ»ØstreamµÄ²Ù×÷£©
-		// sum¾ÍÊÇÖÕÖ¹²Ù×÷
+		// ä½¿ç”¨streamçš„å†…éƒ¨è¿­ä»£
+		// mapå°±æ˜¯ä¸­é—´æ“ä½œï¼ˆè¿”å›streamçš„æ“ä½œï¼‰
+		// sumå°±æ˜¯ç»ˆæ­¢æ“ä½œ
 		int sum2 = IntStream.of(nums).map(StreamDemo1::doubleNum).sum();
-		System.out.println("½á¹ûÎª£º" + sum2);
+		System.out.println("ç»“æœä¸ºï¼š" + sum2);
 
-		System.out.println("¶èĞÔÇóÖµ¾ÍÊÇÖÕÖ¹Ã»ÓĞµ÷ÓÃµÄÇé¿öÏÂ£¬ÖĞ¼ä²Ù×÷²»»áÖ´ĞĞ");
+		System.out.println("æƒ°æ€§æ±‚å€¼å°±æ˜¯ç»ˆæ­¢æ²¡æœ‰è°ƒç”¨çš„æƒ…å†µä¸‹ï¼Œä¸­é—´æ“ä½œä¸ä¼šæ‰§è¡Œ");
 		IntStream.of(nums).map(StreamDemo1::doubleNum);
 	}
 
 	public static int doubleNum(int i) {
-		System.out.println("Ö´ĞĞÁË³ËÒÔ2");
+		System.out.println("æ‰§è¡Œäº†ä¹˜ä»¥2");
 		return i * 2;
 	}
 

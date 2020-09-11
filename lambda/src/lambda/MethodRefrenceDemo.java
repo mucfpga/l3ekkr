@@ -6,10 +6,10 @@ import java.util.function.Consumer;
 import java.util.function.IntUnaryOperator;
 
 class Dog {
-	private String name = "ÏøÌìÈ®";
+	private String name = "å“®å¤©çŠ¬";
 
 	/**
-	 * Ä¬ÈÏ10½ï¹·Á¸
+	 * é»˜è®¤10æ–¤ç‹—ç²®
 	 */
 	private int food = 10;
 
@@ -18,8 +18,8 @@ class Dog {
 	}
 
 	/**
-	 * ´ø²ÎÊıµÄ¹¹Ôìº¯Êı
-	 * 
+	 * å¸¦å‚æ•°çš„æ„é€ å‡½æ•°
+	 *
 	 * @param name
 	 */
 	public Dog(String name) {
@@ -27,24 +27,24 @@ class Dog {
 	}
 
 	/**
-	 * ¹·½Ğ£¬¾²Ì¬·½·¨
-	 * 
+	 * ç‹—å«ï¼Œé™æ€æ–¹æ³•
+	 *
 	 * @param dog
 	 */
 	public static void bark(Dog dog) {
-		System.out.println(dog + "½ĞÁË");
+		System.out.println(dog + "å«äº†");
 	}
 
 	/**
-	 * ³Ô¹·Á¸ JDK
-	 * 
-	 * Ä¬ÈÏ»á°Ñµ±Ç°ÊµÀı´«Èëµ½·Ç¾²Ì¬·½·¨£¬²ÎÊıÃûÎªthis£¬Î»ÖÃÊÇµÚÒ»¸ö£»
-	 * 
+	 * åƒç‹—ç²® JDK
+	 *
+	 * é»˜è®¤ä¼šæŠŠå½“å‰å®ä¾‹ä¼ å…¥åˆ°éé™æ€æ–¹æ³•ï¼Œå‚æ•°åä¸ºthisï¼Œä½ç½®æ˜¯ç¬¬ä¸€ä¸ªï¼›
+	 *
 	 * @param num
-	 * @return »¹Ê£ÏÂ¶àÉÙ½ï
+	 * @return è¿˜å‰©ä¸‹å¤šå°‘æ–¤
 	 */
 	public int eat(int num) {
-		System.out.println("³ÔÁË" + num + "½ï¹·Á¸");
+		System.out.println("åƒäº†" + num + "æ–¤ç‹—ç²®");
 		this.food -= num;
 		return this.food;
 	}
@@ -61,36 +61,36 @@ public class MethodRefrenceDemo {
 		Dog dog = new Dog();
 		dog.eat(3);
 
-		// ·½·¨ÒıÓÃ
+		// æ–¹æ³•å¼•ç”¨
 		Consumer<String> consumer = System.out::println;
-		consumer.accept("½ÓÊÜµÄÊı¾İ");
+		consumer.accept("æ¥å—çš„æ•°æ®");
 
-		// ¾²Ì¬·½·¨µÄ·½·¨ÒıÓÃ
+		// é™æ€æ–¹æ³•çš„æ–¹æ³•å¼•ç”¨
 		Consumer<Dog> consumer2 = Dog::bark;
 		consumer2.accept(dog);
 
-		// ·Ç¾²Ì¬·½·¨£¬Ê¹ÓÃ¶ÔÏóÊµÀıµÄ·½·¨ÒıÓÃ
+		// éé™æ€æ–¹æ³•ï¼Œä½¿ç”¨å¯¹è±¡å®ä¾‹çš„æ–¹æ³•å¼•ç”¨
 		// Function<Integer, Integer> function = dog::eat;
 		// UnaryOperator<Integer> function = dog::eat;
 		IntUnaryOperator function = dog::eat;
-		
-		// dogÖÃ¿Õ£¬²»Ó°ÏìÏÂÃæµÄº¯ÊıÖ´ĞĞ£¬ÒòÎªjava ²ÎÊıÊÇ´«Öµ
-		dog = null;
-		System.out.println("»¹Ê£ÏÂ" + function.applyAsInt(2) + "½ï");
-		//
-		// // Ê¹ÓÃÀàÃûÀ´·½·¨ÒıÓÃ
-		// BiFunction<Dog, Integer, Integer> eatFunction = Dog::eat;
-		// System.out.println("»¹Ê£ÏÂ" + eatFunction.apply(dog, 2) + "½ï");
-		//
-		// // ¹¹Ôìº¯ÊıµÄ·½·¨ÒıÓÃ
-		// Supplier<Dog> supplier = Dog::new;
-		// System.out.println("´´½¨ÁËĞÂ¶ÔÏó£º" + supplier.get());
-		//
-		// // ´ø²ÎÊıµÄ¹¹Ôìº¯ÊıµÄ·½·¨ÒıÓÃ
-		// Function<String, Dog> function2 = Dog::new;
-		// System.out.println("´´½¨ÁËĞÂ¶ÔÏó£º" + function2.apply("Íú²Æ"));
 
-		// ²âÊÔjava±äÁ¿ÊÇ´«Öµ»¹ÊÇ´©ÒıÓÃ
+		// dogç½®ç©ºï¼Œä¸å½±å“ä¸‹é¢çš„å‡½æ•°æ‰§è¡Œï¼Œå› ä¸ºjava å‚æ•°æ˜¯ä¼ å€¼
+		dog = null;
+		System.out.println("è¿˜å‰©ä¸‹" + function.applyAsInt(2) + "æ–¤");
+		//
+		// // ä½¿ç”¨ç±»åæ¥æ–¹æ³•å¼•ç”¨
+		// BiFunction<Dog, Integer, Integer> eatFunction = Dog::eat;
+		// System.out.println("è¿˜å‰©ä¸‹" + eatFunction.apply(dog, 2) + "æ–¤");
+		//
+		// // æ„é€ å‡½æ•°çš„æ–¹æ³•å¼•ç”¨
+		// Supplier<Dog> supplier = Dog::new;
+		// System.out.println("åˆ›å»ºäº†æ–°å¯¹è±¡ï¼š" + supplier.get());
+		//
+		// // å¸¦å‚æ•°çš„æ„é€ å‡½æ•°çš„æ–¹æ³•å¼•ç”¨
+		// Function<String, Dog> function2 = Dog::new;
+		// System.out.println("åˆ›å»ºäº†æ–°å¯¹è±¡ï¼š" + function2.apply("æ—ºè´¢"));
+
+		// æµ‹è¯•javaå˜é‡æ˜¯ä¼ å€¼è¿˜æ˜¯ç©¿å¼•ç”¨
 		List<String> list = new ArrayList<>();
 		test(list);
 

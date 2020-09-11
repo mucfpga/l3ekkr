@@ -14,31 +14,31 @@ interface IMath2 {
 public class TypeDemo {
 
 	public static void main(String[] args) {
-		// ±äÁ¿ÀàÐÍ¶¨Òå
+		// å˜é‡ç±»åž‹å®šä¹‰
 		IMath lambda = (x, y) -> x + y;
 
-		// Êý×éÀï
+		// æ•°ç»„é‡Œ
 		IMath[] lambdas = { (x, y) -> x + y };
 
-		// Ç¿×ª
+		// å¼ºè½¬
 		Object lambda2 = (IMath) (x, y) -> x + y;
-		
-		// Í¨¹ý·µ»ØÀàÐÍ
+
+		// é€šè¿‡è¿”å›žç±»åž‹
 		IMath createLambda = createLambda();
-		
+
 		TypeDemo demo = new TypeDemo();
-		// µ±ÓÐ¶þÒåÐÔµÄÊ±ºò£¬Ê¹ÓÃÇ¿×ª¶ÔÓ¦µÄ½Ó¿Ú½â¾ö
+		// å½“æœ‰äºŒä¹‰æ€§çš„æ—¶å€™ï¼Œä½¿ç”¨å¼ºè½¬å¯¹åº”çš„æŽ¥å£è§£å†³
 		demo.test( (IMath2)(x, y) -> x + y);
 	}
-	
+
 	public void test(IMath math) {
-		
+
 	}
-	
+
 	public void test(IMath2 math) {
-		
+
 	}
-	
+
 	public static IMath createLambda() {
 		return  (x, y) -> x + y;
 	}

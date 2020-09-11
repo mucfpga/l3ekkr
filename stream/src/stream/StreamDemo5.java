@@ -7,32 +7,32 @@ import java.util.stream.IntStream;
 public class StreamDemo5 {
 
 	public static void main(String[] args) {
-		// µ÷ÓÃparallel ²úÉúÒ»¸ö²¢ÐÐÁ÷
+		// è°ƒç”¨parallel äº§ç”Ÿä¸€ä¸ªå¹¶è¡Œæµ
 		// IntStream.range(1, 100).parallel().peek(StreamDemo5::debug).count();
 
-		// ÏÖÔÚÒªÊµÏÖÒ»¸öÕâÑùµÄÐ§¹û: ÏÈ²¢ÐÐ,ÔÙ´®ÐÐ
-		// ¶à´Îµ÷ÓÃ parallel / sequential, ÒÔ×îºóÒ»´Îµ÷ÓÃÎª×¼.
+		// çŽ°åœ¨è¦å®žçŽ°ä¸€ä¸ªè¿™æ ·çš„æ•ˆæžœ: å…ˆå¹¶è¡Œ,å†ä¸²è¡Œ
+		// å¤šæ¬¡è°ƒç”¨ parallel / sequential, ä»¥æœ€åŽä¸€æ¬¡è°ƒç”¨ä¸ºå‡†.
 		// IntStream.range(1, 100)
-		// // µ÷ÓÃparallel²úÉú²¢ÐÐÁ÷
+		// // è°ƒç”¨paralleläº§ç”Ÿå¹¶è¡Œæµ
 		// .parallel().peek(StreamDemo5::debug)
-		// // µ÷ÓÃsequential ²úÉú´®ÐÐÁ÷
+		// // è°ƒç”¨sequential äº§ç”Ÿä¸²è¡Œæµ
 		// .sequential().peek(StreamDemo5::debug2)
 		// .count();
 
-		// ²¢ÐÐÁ÷Ê¹ÓÃµÄÏß³Ì³Ø: ForkJoinPool.commonPool
-		// Ä¬ÈÏµÄÏß³ÌÊýÊÇ µ±Ç°»úÆ÷µÄcpu¸öÊý
-		// Ê¹ÓÃÕâ¸öÊôÐÔ¿ÉÒÔÐÞ¸ÄÄ¬ÈÏµÄÏß³ÌÊý
+		// å¹¶è¡Œæµä½¿ç”¨çš„çº¿ç¨‹æ± : ForkJoinPool.commonPool
+		// é»˜è®¤çš„çº¿ç¨‹æ•°æ˜¯ å½“å‰æœºå™¨çš„cpuä¸ªæ•°
+		// ä½¿ç”¨è¿™ä¸ªå±žæ€§å¯ä»¥ä¿®æ”¹é»˜è®¤çš„çº¿ç¨‹æ•°
 		// System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism",
 		// "20");
 		// IntStream.range(1, 100).parallel().peek(StreamDemo5::debug).count();
 
-		// Ê¹ÓÃ×Ô¼ºµÄÏß³Ì³Ø, ²»Ê¹ÓÃÄ¬ÈÏÏß³Ì³Ø, ·ÀÖ¹ÈÎÎñ±»×èÈû
-		// Ïß³ÌÃû×Ö : ForkJoinPool-1
+		// ä½¿ç”¨è‡ªå·±çš„çº¿ç¨‹æ± , ä¸ä½¿ç”¨é»˜è®¤çº¿ç¨‹æ± , é˜²æ­¢ä»»åŠ¡è¢«é˜»å¡ž
+		// çº¿ç¨‹åå­— : ForkJoinPool-1
 		ForkJoinPool pool = new ForkJoinPool(20);
 		pool.submit(() -> IntStream.range(1, 100).parallel()
 				.peek(StreamDemo5::debug).count());
 		pool.shutdown();
-		
+
 		synchronized (pool) {
 			try {
 				pool.wait();

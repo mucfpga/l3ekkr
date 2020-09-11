@@ -1,8 +1,8 @@
 package lambda;
 
 /**
- * Ê¹ÓÃjdk 8 ½Ó¿Ústatic·½·¨À´´´½¨¹¤¾ßÀà
- * @author Ïş·çÇá
+ * ä½¿ç”¨jdk 8 æ¥å£staticæ–¹æ³•æ¥åˆ›å»ºå·¥å…·ç±»
+ * @author æ™“é£è½»
  *
  */
 public interface MyTool {

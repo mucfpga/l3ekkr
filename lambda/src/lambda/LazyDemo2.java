@@ -12,15 +12,15 @@ class MyLazy {
 	}
 
 	/**
-	 * ÖĞ¼ä²Ù×÷ ²»µ÷ÓÃ×îÖÕ²Ù×÷value£¬ÄÇÃ´op²»»áÕæÕı±»Ö´ĞĞ
+	 * ä¸­é—´æ“ä½œ ä¸è°ƒç”¨æœ€ç»ˆæ“ä½œvalueï¼Œé‚£ä¹ˆopä¸ä¼šçœŸæ­£è¢«æ‰§è¡Œ
 	 */
 	public MyLazy some(IntUnaryOperator op) {
-		// ÎªÁË²»Ó°ÏìÖ®Ç°Êı¾İ£¬Ã¿´Î·µ»ØÒ»¸öĞÂ¶ÔÏó
+		// ä¸ºäº†ä¸å½±å“ä¹‹å‰æ•°æ®ï¼Œæ¯æ¬¡è¿”å›ä¸€ä¸ªæ–°å¯¹è±¡
 		return new MyLazy( () -> op.applyAsInt(this.data.getAsInt()));
 	}
 
 	/**
-	 * ×îÖÕ²Ù×÷
+	 * æœ€ç»ˆæ“ä½œ
 	 */
 	public int value() {
 		return this.data.getAsInt();
@@ -32,32 +32,32 @@ public class LazyDemo2 {
 	public static void main(String[] args) {
 		MyLazy lazy = new MyLazy(()->10);
 
-		System.out.println("Ã»ÓĞµ÷ÓÃvalue×îÖÕ²Ù×÷£¬ÖĞ¼ä²Ù×÷µÄÈÕÖ¾²»Ó¦¸Ã´òÓ¡");
-		// ÎÒÃÇÒªÊµÏÖ²»µ÷ÓÃ×îÖÕ²Ù×÷valueµÄÇé¿öÏÂ
-		// ÖĞ¼ä²Ù×÷some´æÈëµÄº¯Êı²¢²»»áÕæÕıÖ´ĞĞ
+		System.out.println("æ²¡æœ‰è°ƒç”¨valueæœ€ç»ˆæ“ä½œï¼Œä¸­é—´æ“ä½œçš„æ—¥å¿—ä¸åº”è¯¥æ‰“å°");
+		// æˆ‘ä»¬è¦å®ç°ä¸è°ƒç”¨æœ€ç»ˆæ“ä½œvalueçš„æƒ…å†µä¸‹
+		// ä¸­é—´æ“ä½œsomeå­˜å…¥çš„å‡½æ•°å¹¶ä¸ä¼šçœŸæ­£æ‰§è¡Œ
 		lazy.some(LazyDemo2::doubleNumber).some(LazyDemo2::doubleNumber);
-		
-		System.out.println("µ÷ÓÃvalue×îÖÕ²Ù×÷");
+
+		System.out.println("è°ƒç”¨valueæœ€ç»ˆæ“ä½œ");
 		int value = lazy.some(LazyDemo2::doubleNumber)
 				.some(LazyDemo2::doubleNumber).value();
 
 		System.out.println("value= " + value);
 
-		// map ¾ÍÊÇÁ÷ÀïÃæµÄÖĞ¼ä²Ù×÷
-		// sum ¾ÍÊÇÁ÷ÀïÃæµÄ×îÖÕ²Ù×÷
+		// map å°±æ˜¯æµé‡Œé¢çš„ä¸­é—´æ“ä½œ
+		// sum å°±æ˜¯æµé‡Œé¢çš„æœ€ç»ˆæ“ä½œ
 
 		// int sum = IntStream.rangeClosed(1, 3).map(LazyDemo2::doubleNumber)
 		// .sum();
 		// System.out.println("sum=" + sum);
 
-		// ¼ÙÉèÁ÷ÀïÃæ²»µ÷ÓÃ×îÖÕ²Ù×÷£¬ÄÇÃ´ËùÓĞµÄÖĞ¼ä²Ù×÷¶¼²»»áÕæÕı±»Ö´ĞĞ
-		// Õâ¾ÍÊÇÁ÷µÄ¶èĞÔÇóÖµ
-		// ÏÂÃæµÄ´úÂë²»Ö´ĞĞsumÕâÖÖ×îÖÕ²Ù×÷
+		// å‡è®¾æµé‡Œé¢ä¸è°ƒç”¨æœ€ç»ˆæ“ä½œï¼Œé‚£ä¹ˆæ‰€æœ‰çš„ä¸­é—´æ“ä½œéƒ½ä¸ä¼šçœŸæ­£è¢«æ‰§è¡Œ
+		// è¿™å°±æ˜¯æµçš„æƒ°æ€§æ±‚å€¼
+		// ä¸‹é¢çš„ä»£ç ä¸æ‰§è¡Œsumè¿™ç§æœ€ç»ˆæ“ä½œ
 		IntStream.rangeClosed(1, 3).map(LazyDemo2::doubleNumber);
 	}
 
 	public static int doubleNumber(int i) {
-		System.out.println("·½·¨±»µ÷ÓÃÁË");
+		System.out.println("æ–¹æ³•è¢«è°ƒç”¨äº†");
 		return i * 2;
 	}
 

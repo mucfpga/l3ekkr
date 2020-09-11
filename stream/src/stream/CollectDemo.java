@@ -11,26 +11,26 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.MapUtils;
 
 /**
- * Ñ§Éú ¶ÔÏó
+ * å­¦ç”Ÿ å¯¹è±¡
  */
 class Student {
 	/**
-	 * ĞÕÃû
+	 * å§“å
 	 */
 	private String name;
 
 	/**
-	 * ÄêÁä
+	 * å¹´é¾„
 	 */
 	private int age;
 
 	/**
-	 * ĞÔ±ğ
+	 * æ€§åˆ«
 	 */
 	private Gender gender;
 
 	/**
-	 * °à¼¶
+	 * ç­çº§
 	 */
 	private Grade grade;
 
@@ -83,14 +83,14 @@ class Student {
 }
 
 /**
- * ĞÔ±ğ
+ * æ€§åˆ«
  */
 enum Gender {
 	MALE, FEMALE
 }
 
 /**
- * °à¼¶
+ * ç­çº§
  */
 enum Grade {
 	ONE, TWO, THREE, FOUR;
@@ -99,47 +99,47 @@ enum Grade {
 public class CollectDemo {
 
 	public static void main(String[] args) {
-		// ²âÊÔÊı¾İ
+		// æµ‹è¯•æ•°æ®
 		List<Student> students = Arrays.asList(
-				new Student("Ğ¡Ã÷", 10, Gender.MALE, Grade.ONE),
-				new Student("´óÃ÷", 9, Gender.MALE, Grade.THREE),
-				new Student("Ğ¡°×", 8, Gender.FEMALE, Grade.TWO),
-				new Student("Ğ¡ºÚ", 13, Gender.FEMALE, Grade.FOUR),
-				new Student("Ğ¡ºì", 7, Gender.FEMALE, Grade.THREE),
-				new Student("Ğ¡»Æ", 13, Gender.MALE, Grade.ONE),
-				new Student("Ğ¡Çà", 13, Gender.FEMALE, Grade.THREE),
-				new Student("Ğ¡×Ï", 9, Gender.FEMALE, Grade.TWO),
-				new Student("Ğ¡Íõ", 6, Gender.MALE, Grade.ONE),
-				new Student("Ğ¡Àî", 6, Gender.MALE, Grade.ONE),
-				new Student("Ğ¡Âí", 14, Gender.FEMALE, Grade.FOUR),
-				new Student("Ğ¡Áõ", 13, Gender.MALE, Grade.FOUR));
+				new Student("å°æ˜", 10, Gender.MALE, Grade.ONE),
+				new Student("å¤§æ˜", 9, Gender.MALE, Grade.THREE),
+				new Student("å°ç™½", 8, Gender.FEMALE, Grade.TWO),
+				new Student("å°é»‘", 13, Gender.FEMALE, Grade.FOUR),
+				new Student("å°çº¢", 7, Gender.FEMALE, Grade.THREE),
+				new Student("å°é»„", 13, Gender.MALE, Grade.ONE),
+				new Student("å°é’", 13, Gender.FEMALE, Grade.THREE),
+				new Student("å°ç´«", 9, Gender.FEMALE, Grade.TWO),
+				new Student("å°ç‹", 6, Gender.MALE, Grade.ONE),
+				new Student("å°æ", 6, Gender.MALE, Grade.ONE),
+				new Student("å°é©¬", 14, Gender.FEMALE, Grade.FOUR),
+				new Student("å°åˆ˜", 13, Gender.MALE, Grade.FOUR));
 
-		// µÃµ½ËùÓĞÑ§ÉúµÄÄêÁäÁĞ±í
-		// s -> s.getAge() --> Student::getAge , ²»»á¶àÉú³ÉÒ»¸öÀàËÆ lambda$0ÕâÑùµÄº¯Êı
+		// å¾—åˆ°æ‰€æœ‰å­¦ç”Ÿçš„å¹´é¾„åˆ—è¡¨
+		// s -> s.getAge() --> Student::getAge , ä¸ä¼šå¤šç”Ÿæˆä¸€ä¸ªç±»ä¼¼ lambda$0è¿™æ ·çš„å‡½æ•°
 		Set<Integer> ages = students.stream().map(Student::getAge)
 				.collect(Collectors.toCollection(TreeSet::new));
-		System.out.println("ËùÓĞÑ§ÉúµÄÄêÁä:" + ages);
+		System.out.println("æ‰€æœ‰å­¦ç”Ÿçš„å¹´é¾„:" + ages);
 
-		// Í³¼Æ»ã×ÜĞÅÏ¢
+		// ç»Ÿè®¡æ±‡æ€»ä¿¡æ¯
 		IntSummaryStatistics agesSummaryStatistics = students.stream()
 				.collect(Collectors.summarizingInt(Student::getAge));
-		System.out.println("ÄêÁä»ã×ÜĞÅÏ¢:" + agesSummaryStatistics);
+		System.out.println("å¹´é¾„æ±‡æ€»ä¿¡æ¯:" + agesSummaryStatistics);
 
-		// ·Ö¿é
+		// åˆ†å—
 		Map<Boolean, List<Student>> genders = students.stream().collect(
 				Collectors.partitioningBy(s -> s.getGender() == Gender.MALE));
-		// System.out.println("ÄĞÅ®Ñ§ÉúÁĞ±í:" + genders);
-		MapUtils.verbosePrint(System.out, "ÄĞÅ®Ñ§ÉúÁĞ±í", genders);
+		// System.out.println("ç”·å¥³å­¦ç”Ÿåˆ—è¡¨:" + genders);
+		MapUtils.verbosePrint(System.out, "ç”·å¥³å­¦ç”Ÿåˆ—è¡¨", genders);
 
-		// ·Ö×é
+		// åˆ†ç»„
 		Map<Grade, List<Student>> grades = students.stream()
 				.collect(Collectors.groupingBy(Student::getGrade));
-		MapUtils.verbosePrint(System.out, "Ñ§Éú°à¼¶ÁĞ±í", grades);
+		MapUtils.verbosePrint(System.out, "å­¦ç”Ÿç­çº§åˆ—è¡¨", grades);
 
-		// µÃµ½ËùÓĞ°à¼¶Ñ§ÉúµÄ¸öÊı
+		// å¾—åˆ°æ‰€æœ‰ç­çº§å­¦ç”Ÿçš„ä¸ªæ•°
 		Map<Grade, Long> gradesCount = students.stream().collect(Collectors
 				.groupingBy(Student::getGrade, Collectors.counting()));
-		MapUtils.verbosePrint(System.out, "°à¼¶Ñ§Éú¸öÊıÁĞ±í", gradesCount);
+		MapUtils.verbosePrint(System.out, "ç­çº§å­¦ç”Ÿä¸ªæ•°åˆ—è¡¨", gradesCount);
 
 	}
 

@@ -12,22 +12,22 @@ public class StreamDemo2 {
 	public static void main(String[] args) {
 		List<String> list = new ArrayList<>();
 
-		// ´Ó¼¯ºÏ´´½¨
+		// ä»Žé›†åˆåˆ›å»º
 		list.stream();
 		list.parallelStream();
 
-		// ´ÓÊý×é´´½¨
+		// ä»Žæ•°ç»„åˆ›å»º
 		Arrays.stream(new int[] { 2, 3, 5 });
 
-		// ´´½¨Êý×ÖÁ÷
+		// åˆ›å»ºæ•°å­—æµ
 		IntStream.of(1, 2, 3);
 		IntStream.rangeClosed(1, 10);
 
-		// Ê¹ÓÃrandom´´½¨Ò»¸öÎÞÏÞÁ÷
+		// ä½¿ç”¨randomåˆ›å»ºä¸€ä¸ªæ— é™æµ
 		new Random().ints().limit(10);
 		Random random = new Random();
 
-		// ×Ô¼º²úÉúÁ÷
+		// è‡ªå·±äº§ç”Ÿæµ
 		Stream.generate(() -> random.nextInt()).limit(20);
 
 	}

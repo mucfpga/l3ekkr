@@ -12,38 +12,38 @@ public class StreamDemo4 {
 	public static void main(String[] args) {
 		String str = "my name is 007";
 
-		// Ê¹ÓÃ²¢ĞĞÁ÷
+		// ä½¿ç”¨å¹¶è¡Œæµ
 		str.chars().parallel().forEach(i -> System.out.print((char) i));
 		System.out.println();
-		// Ê¹ÓÃ forEachOrdered ±£Ö¤Ë³Ğò
+		// ä½¿ç”¨ forEachOrdered ä¿è¯é¡ºåº
 		str.chars().parallel().forEachOrdered(i -> System.out.print((char) i));
 
-		// ÊÕ¼¯µ½list
+		// æ”¶é›†åˆ°list
 		List<String> list = Stream.of(str.split(" "))
 				.collect(Collectors.toList());
 		System.out.println(list);
 
-		// Ê¹ÓÃ reduce Æ´½Ó×Ö·û´®
+		// ä½¿ç”¨ reduce æ‹¼æ¥å­—ç¬¦ä¸²
 		Optional<String> letters = Stream.of(str.split(" "))
 				.reduce((s1, s2) -> s1 + "|" + s2);
 		System.out.println(letters.orElse(""));
 
-		// ´ø³õÊ¼»¯ÖµµÄreduce
+		// å¸¦åˆå§‹åŒ–å€¼çš„reduce
 		String reduce = Stream.of(str.split(" ")).reduce("",
 				(s1, s2) -> s1 + "|" + s2);
 		System.out.println(reduce);
 
-		// ¼ÆËãËùÓĞµ¥´Ê×Ü³¤¶È
+		// è®¡ç®—æ‰€æœ‰å•è¯æ€»é•¿åº¦
 		Integer length = Stream.of(str.split(" ")).map(s -> s.length())
 				.reduce(0, (s1, s2) -> s1 + s2);
 		System.out.println(length);
 
-		// max µÄÊ¹ÓÃ
+		// max çš„ä½¿ç”¨
 		Optional<String> max = Stream.of(str.split(" "))
 				.max((s1, s2) -> s1.length() - s2.length());
 		System.out.println(max.get());
 
-		// Ê¹ÓÃ findFirst ¶ÌÂ·²Ù×÷
+		// ä½¿ç”¨ findFirst çŸ­è·¯æ“ä½œ
 		OptionalInt findFirst = new Random().ints().findFirst();
 		System.out.println(findFirst.getAsInt());
 	}

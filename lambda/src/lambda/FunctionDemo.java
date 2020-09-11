@@ -5,18 +5,18 @@ import java.util.function.IntPredicate;
 
 public class FunctionDemo {
 
-	
+
 	public static void main(String[] args) {
-		// ¶ÏÑÔº¯Êı½Ó¿Ú
+		// æ–­è¨€å‡½æ•°æ¥å£
 		IntPredicate predicate = i -> i > 0;
 		System.out.println(predicate.test(-9));
-		
+
 		//
 		// IntConsumer
 
-		// Ïû·Ñº¯Êı½Ó¿Ú
+		// æ¶ˆè´¹å‡½æ•°æ¥å£
 		Consumer<String> consumer = s -> System.out.println(s);
-		consumer.accept("ÊäÈëµÄÊı¾İ");
+		consumer.accept("è¾“å…¥çš„æ•°æ®");
 	}
 
 }

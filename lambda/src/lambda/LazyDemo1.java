@@ -5,8 +5,8 @@ import java.util.function.Supplier;
 class Log {
 
 	/**
-	 * ²»´òÓ¡debug¼¶±ğµÄÈÕÖ¾
-	 * 
+	 * ä¸æ‰“å°debugçº§åˆ«çš„æ—¥å¿—
+	 *
 	 * @return
 	 */
 	public boolean isDebug() {
@@ -20,13 +20,13 @@ class Log {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param supplier
-	 *            ´«ÈëÒ»¸öÌá¹©×Ö·û´®µÄº¯Êı
+	 *            ä¼ å…¥ä¸€ä¸ªæä¾›å­—ç¬¦ä¸²çš„å‡½æ•°
 	 */
 	public void debug(Supplier<String> supplier) {
 		if (this.isDebug()) {
-			// ÕæÕıÒª´òÓ¡µÄÊ±ºò£¬²Åµ÷ÓÃ
+			// çœŸæ­£è¦æ‰“å°çš„æ—¶å€™ï¼Œæ‰è°ƒç”¨
 			System.out.println(supplier.get());
 		}
 	}
@@ -38,12 +38,12 @@ public class LazyDemo1 {
 	public static void main(String[] args) {
 		LazyDemo1 demo = new LazyDemo1();
 		Log log = new Log();
-		log.debug(() -> "´òÓ¡ÈÕÖ¾Ö®Ç°±ØĞëÅĞ¶ÏÈÕÖ¾¼¶±ğ: " + demo.toString());
+		log.debug(() -> "æ‰“å°æ—¥å¿—ä¹‹å‰å¿…é¡»åˆ¤æ–­æ—¥å¿—çº§åˆ«: " + demo.toString());
 	}
 
 	@Override
 	public String toString() {
-		System.out.println("toString ±»µ÷ÓÃÁË");
+		System.out.println("toString è¢«è°ƒç”¨äº†");
 		return super.toString();
 	}
 

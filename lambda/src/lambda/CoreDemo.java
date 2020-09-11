@@ -2,21 +2,21 @@ package lambda;
 
 import java.util.function.Consumer;
 /**
- * lambdaµ×²ãÊµÏÖÔ­Àí
- * 
- * 1. ±àÒëÆ÷»áÎªÃ¿Ò»¸ölambda±í´ïÊ½Éú³ÉÒ»¸ö·½·¨
- * 		·½·¨ÃûÊÇlambda$0,1,2,3£¬µ«·½·¨ÒıÓÃµÄ±í´ïÊ½²»»áÉú³É·½·¨¡£
- * 2. ÔÚlambdaµØ·½»á²úÉúÒ»¸öinvokeDynamicÖ¸Áî£¬Õâ¸öÖ¸Áî»áµ÷ÓÃ
- * 		bootstrap£¨Òıµ¼£©·½·¨£¬bootstrap·½·¨»áÖ¸Ïò×Ô¶¯Éú³ÉµÄlambda$0
- * 		·½·¨»òÕß·½·¨ÒıÓÃµÄ·½·¨¡£
- * 3. bootstrap·½·¨Ê¹ÓÃÉÏÊÇµ÷ÓÃÁËLambdaMetafactory.metafactory¾²Ì¬·½·¨
- * 		¸Ã·½·¨·µ»ØÁËCallSite(µ÷ÓÃÕ¾µã)£¬ÀïÃæ°üº¬ÁËMethodHandle£¨·½·¨¾ä±ú£©
- * 		Ò²¾ÍÊÇ×îÖÕµ÷ÓÃµÄ·½·¨¡£
- * 4. Òıµ¼·½·¨Ö»»áµ÷ÓÃÒ»´Î¡£
- * 
- * ×Ô¶¯Éú³ÉµÄ·½·¨£º
- * 1. ÊäÈëºÍÊä³öºÍlambdaÒ»ÖÂ
- * 2. Èç¹ûÃ»ÓĞÊ¹ÓÃthis£¬ÄÇÃ´¾ÍÊÇstatic·½·¨£¬·ñÔò¾ÍÊÇ³ÉÔ±·½·¨
+ * lambdaåº•å±‚å®ç°åŸç†
+ *
+ * 1. ç¼–è¯‘å™¨ä¼šä¸ºæ¯ä¸€ä¸ªlambdaè¡¨è¾¾å¼ç”Ÿæˆä¸€ä¸ªæ–¹æ³•
+ * 		æ–¹æ³•åæ˜¯lambda$0,1,2,3ï¼Œä½†æ–¹æ³•å¼•ç”¨çš„è¡¨è¾¾å¼ä¸ä¼šç”Ÿæˆæ–¹æ³•ã€‚
+ * 2. åœ¨lambdaåœ°æ–¹ä¼šäº§ç”Ÿä¸€ä¸ªinvokeDynamicæŒ‡ä»¤ï¼Œè¿™ä¸ªæŒ‡ä»¤ä¼šè°ƒç”¨
+ * 		bootstrapï¼ˆå¼•å¯¼ï¼‰æ–¹æ³•ï¼Œbootstrapæ–¹æ³•ä¼šæŒ‡å‘è‡ªåŠ¨ç”Ÿæˆçš„lambda$0
+ * 		æ–¹æ³•æˆ–è€…æ–¹æ³•å¼•ç”¨çš„æ–¹æ³•ã€‚
+ * 3. bootstrapæ–¹æ³•ä½¿ç”¨ä¸Šæ˜¯è°ƒç”¨äº†LambdaMetafactory.metafactoryé™æ€æ–¹æ³•
+ * 		è¯¥æ–¹æ³•è¿”å›äº†CallSite(è°ƒç”¨ç«™ç‚¹)ï¼Œé‡Œé¢åŒ…å«äº†MethodHandleï¼ˆæ–¹æ³•å¥æŸ„ï¼‰
+ * 		ä¹Ÿå°±æ˜¯æœ€ç»ˆè°ƒç”¨çš„æ–¹æ³•ã€‚
+ * 4. å¼•å¯¼æ–¹æ³•åªä¼šè°ƒç”¨ä¸€æ¬¡ã€‚
+ *
+ * è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•ï¼š
+ * 1. è¾“å…¥å’Œè¾“å‡ºå’Œlambdaä¸€è‡´
+ * 2. å¦‚æœæ²¡æœ‰ä½¿ç”¨thisï¼Œé‚£ä¹ˆå°±æ˜¯staticæ–¹æ³•ï¼Œå¦åˆ™å°±æ˜¯æˆå‘˜æ–¹æ³•
  *
  */
 public class CoreDemo {
@@ -25,23 +25,23 @@ public class CoreDemo {
 		Consumer<String> consumer = s-> System.out.println(s);
 		consumer.accept("222");
 		System.out.println(consumer.getClass());
-		
+
 		CoreDemo demo = new CoreDemo();
-		
+
 		demo.test2();
 		// demo.test2();
 	}
-	
+
 	public void test2() {
 		Consumer<Integer> consumer = s-> {
 			System.out.println(this);
-			System.out.println(s);			
+			System.out.println(s);
 		};
 		//Consumer<String> consumer = System.out::println;
 		consumer.accept(2222);
 		System.out.println(consumer.getClass());
 	}
-	
+
 //	public void lambda$0(String string) {
 //		
 //	}

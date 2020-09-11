@@ -9,21 +9,21 @@ public class StreamDemo3 {
 	public static void main(String[] args) {
 		String str = "my name is 007";
 
-		// °ÑÃ¿¸öµ¥´ÊµÄ³¤¶Èµ÷ÓÃ³öÀ´
+		// æŠŠæ¯ä¸ªå•è¯çš„é•¿åº¦è°ƒç”¨å‡ºæ¥
 		Stream.of(str.split(" ")).filter(s -> s.length() > 2)
 				.map(s -> s.length()).forEach(System.out::println);
 
-		// flatMap A->BÊôÐÔ(ÊÇ¸ö¼¯ºÏ), ×îÖÕµÃµ½ËùÓÐµÄAÔªËØÀïÃæµÄËùÓÐBÊôÐÔ¼¯ºÏ
-		// intStream/longStream ²¢²»ÊÇStreamµÄ×ÓÀà, ËùÒÔÒª½øÐÐ×°Ïä boxed
+		// flatMap A->Bå±žæ€§(æ˜¯ä¸ªé›†åˆ), æœ€ç»ˆå¾—åˆ°æ‰€æœ‰çš„Aå…ƒç´ é‡Œé¢çš„æ‰€æœ‰Bå±žæ€§é›†åˆ
+		// intStream/longStream å¹¶ä¸æ˜¯Streamçš„å­ç±», æ‰€ä»¥è¦è¿›è¡Œè£…ç®± boxed
 		Stream.of(str.split(" ")).flatMap(s -> s.chars().boxed())
 				.forEach(i -> System.out.println((char) i.intValue()));
 
-		// peek ÓÃÓÚdebug. ÊÇ¸öÖÐ¼ä²Ù×÷,ºÍ forEach ÊÇÖÕÖ¹²Ù×÷
+		// peek ç”¨äºŽdebug. æ˜¯ä¸ªä¸­é—´æ“ä½œ,å’Œ forEach æ˜¯ç»ˆæ­¢æ“ä½œ
 		System.out.println("--------------peek------------");
 		Stream.of(str.split(" ")).peek(System.out::println)
 				.forEach(System.out::println);
 
-		// limit Ê¹ÓÃ, Ö÷ÒªÓÃÓÚÎÞÏÞÁ÷
+		// limit ä½¿ç”¨, ä¸»è¦ç”¨äºŽæ— é™æµ
 		new Random().ints().filter(i -> i > 100 && i < 1000).limit(10)
 				.forEach(System.out::println);
 

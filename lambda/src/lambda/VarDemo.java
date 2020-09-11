@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * 变量引用
+ * 鍙橀噺寮曠敤
  */
 public class VarDemo {
 

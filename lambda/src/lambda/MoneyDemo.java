@@ -11,7 +11,7 @@ class MyMoney {
 	}
 
 	public void printMoney(Function<Integer, String> moneyFormat) {
-		System.out.println("ÎÒµÄ´æ¿î£º" + moneyFormat.apply(this.money));
+		System.out.println("æˆ‘çš„å­˜æ¬¾ï¼š" + moneyFormat.apply(this.money));
 	}
 }
 
@@ -22,9 +22,9 @@ public class MoneyDemo {
 
 		Function<Integer, String> moneyFormat = i -> new DecimalFormat("#,###")
 				.format(i);
-		
-		// º¯Êı½Ó¿ÚÁ´Ê½²Ù×÷
-		me.printMoney(moneyFormat.andThen(s -> "ÈËÃñ±Ò " + s));
+
+		// å‡½æ•°æ¥å£é“¾å¼æ“ä½œ
+		me.printMoney(moneyFormat.andThen(s -> "äººæ°‘å¸ " + s));
 	}
 
 }

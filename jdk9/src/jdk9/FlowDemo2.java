@@ -6,13 +6,13 @@ import java.util.concurrent.Flow.Subscription;
 import java.util.concurrent.SubmissionPublisher;
 
 /**
- * ´ø process µÄ flow demo
+ * å¸¦ process çš„ flow demo
  */
 
 /**
- * Processor, ĞèÒª¼Ì³ĞSubmissionPublisher²¢ÊµÏÖProcessor½Ó¿Ú
- * 
- * ÊäÈëÔ´Êı¾İ integer, ¹ıÂËµôĞ¡ÓÚ0µÄ, È»ºó×ª»»³É×Ö·û´®·¢²¼³öÈ¥
+ * Processor, éœ€è¦ç»§æ‰¿SubmissionPublisherå¹¶å®ç°Processoræ¥å£
+ *
+ * è¾“å…¥æºæ•°æ® integer, è¿‡æ»¤æ‰å°äº0çš„, ç„¶åè½¬æ¢æˆå­—ç¬¦ä¸²å‘å¸ƒå‡ºå»
  */
 class MyProcessor extends SubmissionPublisher<String>
 		implements Processor<Integer, String> {
@@ -21,44 +21,44 @@ class MyProcessor extends SubmissionPublisher<String>
 
 	@Override
 	public void onSubscribe(Subscription subscription) {
-		// ±£´æ¶©ÔÄ¹ØÏµ, ĞèÒªÓÃËüÀ´¸ø·¢²¼ÕßÏìÓ¦
+		// ä¿å­˜è®¢é˜…å…³ç³», éœ€è¦ç”¨å®ƒæ¥ç»™å‘å¸ƒè€…å“åº”
 		this.subscription = subscription;
 
-		// ÇëÇóÒ»¸öÊı¾İ
+		// è¯·æ±‚ä¸€ä¸ªæ•°æ®
 		this.subscription.request(1);
 	}
 
 	@Override
 	public void onNext(Integer item) {
-		// ½ÓÊÜµ½Ò»¸öÊı¾İ, ´¦Àí
-		System.out.println("´¦ÀíÆ÷½ÓÊÜµ½Êı¾İ: " + item);
+		// æ¥å—åˆ°ä¸€ä¸ªæ•°æ®, å¤„ç†
+		System.out.println("å¤„ç†å™¨æ¥å—åˆ°æ•°æ®: " + item);
 
-		// ¹ıÂËµôĞ¡ÓÚ0µÄ, È»ºó·¢²¼³öÈ¥
+		// è¿‡æ»¤æ‰å°äº0çš„, ç„¶åå‘å¸ƒå‡ºå»
 		if (item > 0) {
-			this.submit("×ª»»ºóµÄÊı¾İ:" + item);
+			this.submit("è½¬æ¢åçš„æ•°æ®:" + item);
 		}
 
-		// ´¦ÀíÍêµ÷ÓÃrequestÔÙÇëÇóÒ»¸öÊı¾İ
+		// å¤„ç†å®Œè°ƒç”¨requestå†è¯·æ±‚ä¸€ä¸ªæ•°æ®
 		this.subscription.request(1);
 
-		// »òÕß ÒÑ¾­´ïµ½ÁËÄ¿±ê, µ÷ÓÃcancel¸æËß·¢²¼Õß²»ÔÙ½ÓÊÜÊı¾İÁË
+		// æˆ–è€… å·²ç»è¾¾åˆ°äº†ç›®æ ‡, è°ƒç”¨cancelå‘Šè¯‰å‘å¸ƒè€…ä¸å†æ¥å—æ•°æ®äº†
 		// this.subscription.cancel();
 	}
 
 	@Override
 	public void onError(Throwable throwable) {
-		// ³öÏÖÁËÒì³£(ÀıÈç´¦ÀíÊı¾İµÄÊ±ºò²úÉúÁËÒì³£)
+		// å‡ºç°äº†å¼‚å¸¸(ä¾‹å¦‚å¤„ç†æ•°æ®çš„æ—¶å€™äº§ç”Ÿäº†å¼‚å¸¸)
 		throwable.printStackTrace();
 
-		// ÎÒÃÇ¿ÉÒÔ¸æËß·¢²¼Õß, ºóÃæ²»½ÓÊÜÊı¾İÁË
+		// æˆ‘ä»¬å¯ä»¥å‘Šè¯‰å‘å¸ƒè€…, åé¢ä¸æ¥å—æ•°æ®äº†
 		this.subscription.cancel();
 	}
 
 	@Override
 	public void onComplete() {
-		// È«²¿Êı¾İ´¦ÀíÍêÁË(·¢²¼Õß¹Ø±ÕÁË)
-		System.out.println("´¦ÀíÆ÷´¦ÀíÍêÁË!");
-		// ¹Ø±Õ·¢²¼Õß
+		// å…¨éƒ¨æ•°æ®å¤„ç†å®Œäº†(å‘å¸ƒè€…å…³é—­äº†)
+		System.out.println("å¤„ç†å™¨å¤„ç†å®Œäº†!");
+		// å…³é—­å‘å¸ƒè€…
 		this.close();
 	}
 
@@ -67,72 +67,72 @@ class MyProcessor extends SubmissionPublisher<String>
 public class FlowDemo2 {
 
 	public static void main(String[] args) throws Exception {
-		// 1. ¶¨Òå·¢²¼Õß, ·¢²¼µÄÊı¾İÀàĞÍÊÇ Integer
-		// Ö±½ÓÊ¹ÓÃjdk×Ô´øµÄSubmissionPublisher
+		// 1. å®šä¹‰å‘å¸ƒè€…, å‘å¸ƒçš„æ•°æ®ç±»å‹æ˜¯ Integer
+		// ç›´æ¥ä½¿ç”¨jdkè‡ªå¸¦çš„SubmissionPublisher
 		SubmissionPublisher<Integer> publiser = new SubmissionPublisher<Integer>();
 
-		// 2. ¶¨Òå´¦ÀíÆ÷, ¶ÔÊı¾İ½øĞĞ¹ıÂË, ²¢×ª»»ÎªStringÀàĞÍ
+		// 2. å®šä¹‰å¤„ç†å™¨, å¯¹æ•°æ®è¿›è¡Œè¿‡æ»¤, å¹¶è½¬æ¢ä¸ºStringç±»å‹
 		MyProcessor processor = new MyProcessor();
 
-		// 3. ·¢²¼Õß ºÍ ´¦ÀíÆ÷ ½¨Á¢¶©ÔÄ¹ØÏµ
+		// 3. å‘å¸ƒè€… å’Œ å¤„ç†å™¨ å»ºç«‹è®¢é˜…å…³ç³»
 		publiser.subscribe(processor);
 
-		// 4. ¶¨Òå×îÖÕ¶©ÔÄÕß, Ïû·Ñ String ÀàĞÍÊı¾İ
+		// 4. å®šä¹‰æœ€ç»ˆè®¢é˜…è€…, æ¶ˆè´¹ String ç±»å‹æ•°æ®
 		Subscriber<String> subscriber = new Subscriber<String>() {
 
 			private Subscription subscription;
 
 			@Override
 			public void onSubscribe(Subscription subscription) {
-				// ±£´æ¶©ÔÄ¹ØÏµ, ĞèÒªÓÃËüÀ´¸ø·¢²¼ÕßÏìÓ¦
+				// ä¿å­˜è®¢é˜…å…³ç³», éœ€è¦ç”¨å®ƒæ¥ç»™å‘å¸ƒè€…å“åº”
 				this.subscription = subscription;
 
-				// ÇëÇóÒ»¸öÊı¾İ
+				// è¯·æ±‚ä¸€ä¸ªæ•°æ®
 				this.subscription.request(1);
 			}
 
 			@Override
 			public void onNext(String item) {
-				// ½ÓÊÜµ½Ò»¸öÊı¾İ, ´¦Àí
-				System.out.println("½ÓÊÜµ½Êı¾İ: " + item);
+				// æ¥å—åˆ°ä¸€ä¸ªæ•°æ®, å¤„ç†
+				System.out.println("æ¥å—åˆ°æ•°æ®: " + item);
 
-				// ´¦ÀíÍêµ÷ÓÃrequestÔÙÇëÇóÒ»¸öÊı¾İ
+				// å¤„ç†å®Œè°ƒç”¨requestå†è¯·æ±‚ä¸€ä¸ªæ•°æ®
 				this.subscription.request(1);
 
-				// »òÕß ÒÑ¾­´ïµ½ÁËÄ¿±ê, µ÷ÓÃcancel¸æËß·¢²¼Õß²»ÔÙ½ÓÊÜÊı¾İÁË
+				// æˆ–è€… å·²ç»è¾¾åˆ°äº†ç›®æ ‡, è°ƒç”¨cancelå‘Šè¯‰å‘å¸ƒè€…ä¸å†æ¥å—æ•°æ®äº†
 				// this.subscription.cancel();
 			}
 
 			@Override
 			public void onError(Throwable throwable) {
-				// ³öÏÖÁËÒì³£(ÀıÈç´¦ÀíÊı¾İµÄÊ±ºò²úÉúÁËÒì³£)
+				// å‡ºç°äº†å¼‚å¸¸(ä¾‹å¦‚å¤„ç†æ•°æ®çš„æ—¶å€™äº§ç”Ÿäº†å¼‚å¸¸)
 				throwable.printStackTrace();
 
-				// ÎÒÃÇ¿ÉÒÔ¸æËß·¢²¼Õß, ºóÃæ²»½ÓÊÜÊı¾İÁË
+				// æˆ‘ä»¬å¯ä»¥å‘Šè¯‰å‘å¸ƒè€…, åé¢ä¸æ¥å—æ•°æ®äº†
 				this.subscription.cancel();
 			}
 
 			@Override
 			public void onComplete() {
-				// È«²¿Êı¾İ´¦ÀíÍêÁË(·¢²¼Õß¹Ø±ÕÁË)
-				System.out.println("´¦ÀíÍêÁË!");
+				// å…¨éƒ¨æ•°æ®å¤„ç†å®Œäº†(å‘å¸ƒè€…å…³é—­äº†)
+				System.out.println("å¤„ç†å®Œäº†!");
 			}
 
 		};
 
-		// 5. ´¦ÀíÆ÷ ºÍ ×îÖÕ¶©ÔÄÕß ½¨Á¢¶©ÔÄ¹ØÏµ
+		// 5. å¤„ç†å™¨ å’Œ æœ€ç»ˆè®¢é˜…è€… å»ºç«‹è®¢é˜…å…³ç³»
 		processor.subscribe(subscriber);
 
-		// 6. Éú²úÊı¾İ, ²¢·¢²¼
-		// ÕâÀïºöÂÔÊı¾İÉú²ú¹ı³Ì
+		// 6. ç”Ÿäº§æ•°æ®, å¹¶å‘å¸ƒ
+		// è¿™é‡Œå¿½ç•¥æ•°æ®ç”Ÿäº§è¿‡ç¨‹
 		publiser.submit(-111);
 		publiser.submit(111);
 
-		// 7. ½áÊøºó ¹Ø±Õ·¢²¼Õß
-		// ÕıÊ½»·¾³ Ó¦¸Ã·Å finally »òÕßÊ¹ÓÃ try-resouce È·±£¹Ø±Õ
+		// 7. ç»“æŸå å…³é—­å‘å¸ƒè€…
+		// æ­£å¼ç¯å¢ƒ åº”è¯¥æ”¾ finally æˆ–è€…ä½¿ç”¨ try-resouce ç¡®ä¿å…³é—­
 		publiser.close();
 
-		// Ö÷Ïß³ÌÑÓ³ÙÍ£Ö¹, ·ñÔòÊı¾İÃ»ÓĞÏû·Ñ¾ÍÍË³ö
+		// ä¸»çº¿ç¨‹å»¶è¿Ÿåœæ­¢, å¦åˆ™æ•°æ®æ²¡æœ‰æ¶ˆè´¹å°±é€€å‡º
 		Thread.currentThread().join(1000);
 	}
 

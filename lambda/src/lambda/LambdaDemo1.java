@@ -45,7 +45,7 @@ public strictfp class LambdaDemo1 {
 		System.out.println(i1.add(3, 7));
 		System.out.println(i1.doubleNum(20));
 
-		// 这种是最常见写法
+		// 杩欑鏄渶甯歌鍐欐硶
 		Interface1 i2 = i -> i * 2;
 
 		Interface1 i3 = (int i) -> i * 2;

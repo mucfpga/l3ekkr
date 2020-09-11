@@ -8,28 +8,25 @@ import java.util.concurrent.TimeUnit;
 public class FlowDemo {
 
 	public static void main(String[] args) throws Exception {
-		// 1. ¶¨Òå·¢²¼Õß, ·¢²¼µÄÊı¾İÀàĞÍÊÇ Integer
-		// Ö±½ÓÊ¹ÓÃjdk×Ô´øµÄSubmissionPublisher, ËüÊµÏÖÁË Publisher ½Ó¿Ú
+		// 1. ï¿½ï¿½ï¿½å·¢ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Integer
+		// Ö±ï¿½ï¿½Ê¹ï¿½ï¿½jdkï¿½Ô´ï¿½ï¿½ï¿½SubmissionPublisher, ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ Publisher ï¿½Ó¿ï¿½
 		SubmissionPublisher<Integer> publiser = new SubmissionPublisher<Integer>();
 
-		// 2. ¶¨Òå¶©ÔÄÕß
+		// 2. ï¿½ï¿½ï¿½å¶©ï¿½ï¿½ï¿½ï¿½
 		Subscriber<Integer> subscriber = new Subscriber<Integer>() {
 
 			private Subscription subscription;
 
 			@Override
 			public void onSubscribe(Subscription subscription) {
-				// ±£´æ¶©ÔÄ¹ØÏµ, ĞèÒªÓÃËüÀ´¸ø·¢²¼ÕßÏìÓ¦
-				this.subscription = subscription;
 
-				// ÇëÇóÒ»¸öÊı¾İ
+				this.subscription = subscription;
 				this.subscription.request(1);
 			}
 
 			@Override
 			public void onNext(Integer item) {
-				// ½ÓÊÜµ½Ò»¸öÊı¾İ, ´¦Àí
-				System.out.println("½ÓÊÜµ½Êı¾İ: " + item);
+
 
 				try {
 					TimeUnit.SECONDS.sleep(3);
@@ -37,49 +34,49 @@ public class FlowDemo {
 					e.printStackTrace();
 				}
 				
-				// ´¦ÀíÍêµ÷ÓÃrequestÔÙÇëÇóÒ»¸öÊı¾İ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½requestï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				this.subscription.request(1);
 
-				// »òÕß ÒÑ¾­´ïµ½ÁËÄ¿±ê, µ÷ÓÃcancel¸æËß·¢²¼Õß²»ÔÙ½ÓÊÜÊı¾İÁË
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ïµ½ï¿½ï¿½Ä¿ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½cancelï¿½ï¿½ï¿½ß·ï¿½ï¿½ï¿½ï¿½ß²ï¿½ï¿½Ù½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				// this.subscription.cancel();
 			}
 
 			@Override
 			public void onError(Throwable throwable) {
-				// ³öÏÖÁËÒì³£(ÀıÈç´¦ÀíÊı¾İµÄÊ±ºò²úÉúÁËÒì³£)
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£(ï¿½ï¿½ï¿½ç´¦ï¿½ï¿½ï¿½ï¿½ï¿½İµï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£)
 				throwable.printStackTrace();
 
-				// ÎÒÃÇ¿ÉÒÔ¸æËß·¢²¼Õß, ºóÃæ²»½ÓÊÜÊı¾İÁË
+				// ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½Ô¸ï¿½ï¿½ß·ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½æ²»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				this.subscription.cancel();
 			}
 
 			@Override
 			public void onComplete() {
-				// È«²¿Êı¾İ´¦ÀíÍêÁË(·¢²¼Õß¹Ø±ÕÁË)
-				System.out.println("´¦ÀíÍêÁË!");
+				// È«ï¿½ï¿½ï¿½ï¿½ï¿½İ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ß¹Ø±ï¿½ï¿½ï¿½)
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 			}
 
 		};
 
-		// 3. ·¢²¼ÕßºÍ¶©ÔÄÕß ½¨Á¢¶©ÔÄ¹ØÏµ
+		// 3. ï¿½ï¿½ï¿½ï¿½ï¿½ßºÍ¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½Ïµ
 		publiser.subscribe(subscriber);
 
-		// 4. Éú²úÊı¾İ, ²¢·¢²¼
-		// ÕâÀïºöÂÔÊı¾İÉú²ú¹ı³Ì
+		// 4. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for (int i = 0; i < 1000; i++) {
-			System.out.println("Éú³ÉÊı¾İ:" + i);
-			// submitÊÇ¸öblock·½·¨
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:" + i);
+			// submitï¿½Ç¸ï¿½blockï¿½ï¿½ï¿½ï¿½
 			publiser.submit(i);
 		}
 
-		// 5. ½áÊøºó ¹Ø±Õ·¢²¼Õß
-		// ÕıÊ½»·¾³ Ó¦¸Ã·Å finally »òÕßÊ¹ÓÃ try-resouce È·±£¹Ø±Õ
+		// 5. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø±Õ·ï¿½ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ Ó¦ï¿½Ã·ï¿½ finally ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ try-resouce È·ï¿½ï¿½ï¿½Ø±ï¿½
 		publiser.close();
 
-		// Ö÷Ïß³ÌÑÓ³ÙÍ£Ö¹, ·ñÔòÊı¾İÃ»ÓĞÏû·Ñ¾ÍÍË³ö
+		// ï¿½ï¿½ï¿½ß³ï¿½ï¿½Ó³ï¿½Í£Ö¹, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½Ë³ï¿½
 		Thread.currentThread().join(1000);
-		// debugµÄÊ±ºò, ÏÂÃæÕâĞĞĞèÒªÓĞ¶Ïµã
-		// ·ñÔòÖ÷Ïß³Ì½áÊøÎŞ·¨debug
+		// debugï¿½ï¿½Ê±ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ğ¶Ïµï¿½
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì½ï¿½ï¿½ï¿½ï¿½Ş·ï¿½debug
 		System.out.println();
 	}
 
